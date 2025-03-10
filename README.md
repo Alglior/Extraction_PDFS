@@ -1,48 +1,72 @@
-Structure des fichiers Python 667 lignes de code
+# Kit d'extraction PDF2Data
 
-main.py
+Ce dépôt contient une boîte à outils complète pour extraire et traiter des données à partir de documents PDF, particulièrement orientée vers la gestion de documents contenant des images et du texte qui doivent être séparés et traités individuellement.
 
-Classe principale: FastPDFExtractor
-Fonction principale: batch_process_pdfs
-Objectif: Extraire les pages des PDFs et les convertir en images PNG
+## Aperçu
 
+PDF2Data est une boîte à outils Python modulaire qui permet :
+- L'extraction de pages PDF sous forme d'images
+- La conversion de formats d'image
+- La détection et la division des pages contenant plusieurs images
+- L'extraction de texte à partir d'images vers Excel
+- L'extraction propre du contenu des images (sans texte)
 
-convertPNGtoJPG.py
+La boîte à outils comprend 667 lignes de code réparties sur plusieurs modules Python, chacun gérant une partie spécifique du pipeline d'extraction.
 
-Fonction principale: convert_png_to_jpg
-Objectif: Convertir les images PNG extraites en format JPEG
+## Modules
 
+### `main.py`
+- **Classe principale** : `FastPDFExtractor`
+- **Fonction principale** : `batch_process_pdfs()`
+- **Objectif** : Extraire les pages des fichiers PDF et les convertir au format PNG
 
-extract_double_image_jpg.py
+### `convertPNGtoJPG.py`
+- **Fonction principale** : `convert_png_to_jpg()`
+- **Objectif** : Convertir les images PNG extraites au format JPEG pour un traitement ultérieur
 
-Classes principales: ImageSplitter
-Fonctions: find_doubles_images_folders, process_folder, batch_process_directories
-Objectif: Traiter les pages contenant deux images et les diviser
+### `extract_double_image_jpg.py`
+- **Classe principale** : `ImageSplitter`
+- **Fonctions clés** : 
+  - `find_doubles_images_folders()`
+  - `process_folder()`
+  - `batch_process_directories()`
+- **Objectif** : Traiter les pages contenant deux images et les diviser en fichiers séparés
 
+### `image.py`
+- **Classe principale** : `jpgImageSplitter`
+- **Objectif** : Traiter les pages contenant une seule image
 
-image.py
+### `extract_text_from_img_to_xls.py`
+- **Fonctions principales** : 
+  - `create_excel_file()`
+  - `process_image()`
+  - `extract_text_from_images()`
+- **Objectif** : Extraire le contenu textuel des images et l'enregistrer dans des fichiers Excel
 
-Classe principale: jpgImageSplitter
-Objectif: Traiter les pages avec une seule image
+### `extract_images_completly.py`
+- **Classe principale** : `ImageContentExtractor`
+- **Méthodes clés** :
+  - `find_image_folders()`
+  - `find_jpg_files()`
+  - `create_extraction_subfolder()`
+  - `extract_image_content()`
+- **Objectif** : Extraire le contenu visuel des images en supprimant les éléments textuels
 
+## Flux de travail
 
-extract_text_from_img_to_xls.py
+1. Exécuter `main.py` pour extraire les pages PDF sous forme d'images PNG
+2. Trier manuellement les images dans des dossiers :
+   - `doubles_images` : Pages avec plusieurs images
+   - `simple_images` : Pages avec une seule image
+   - `plans` : Pages avec des diagrammes ou des dessins
+3. Exécuter `convertPNGtoJPG.py` pour convertir tous les fichiers PNG au format JPG
+4. Exécuter `extract_double_image_jpg.py` pour traiter et diviser les pages contenant plusieurs images
+5. Exécuter `image.py` pour traiter les pages avec une seule image
+6. Exécuter `extract_text_from_img_to_xls.py` pour extraire le contenu textuel dans des fichiers Excel
+7. Exécuter `extract_images_completly.py` pour créer un dossier d'images sans texte
 
-Fonctions principales: create_excel_file, process_image, extract_text_from_images
-Objectif: Extraire le texte des images et l'enregistrer dans un fichier Excel
+## Prérequis
 
-
-extract_images_completly.py
-
-Classe principale: ImageContentExtractor
-Méthodes: find_image_folders, find_jpg_files, create_extraction_subfolder, extract_image_content
-Objectif: Extraire le contenu des images sans le texte
-
-
-Exécuter main.py pour extraire les pages PDF en PNG
-Trier manuellement les images en dossiers: doubles_images, simple_images, plans
-Exécuter convertPNGtoJPG.py pour convertir les PNG en JPG
-Exécuter extract_double_image_jpg.py pour traiter les images doubles
-Exécuter image.py pour les pages avec une seule image
-Exécuter extract_text_from_img_to_xls.py pour extraire le texte en Excel
-Exécuter extract_images_completly.py pour créer un dossier d'images sans texte
+- Python 3.x
+- Diverses bibliothèques de traitement d'images (voir `requirements.txt`)
+- Capacités OCR pour l'extraction de texte

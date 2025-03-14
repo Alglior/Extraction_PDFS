@@ -57,8 +57,8 @@ La boîte à outils comprend 667 lignes de code réparties sur plusieurs modules
    - `simple_images` : Pages avec une seule image
    - `plans` : Pages avec des diagrammes ou des dessins
 3. Exécuter `convertPNGtoJPG.py` pour convertir tous les fichiers PNG au format JPG
-4. Exécuter `extract_double_image_jpg.py` pour traiter et diviser les pages contenant plusieurs images
-5. Exécuter `extract_images_completly.py` pour créer un dossier d'images sans texte
+4. Exécuter `extract_double_image_jpg.py` pour traiter et diviser les pages contenant plusieurs images 
+5. Exécuter `extract_images_completly.py` pour créer un dossier d'images sans texte pour les images simple
 6. Exécuter `extract_text_from_img_to_xls.py` pour extraire le contenu textuel dans des fichiers Excel
 
 ## Prérequis

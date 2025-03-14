@@ -32,9 +32,6 @@ La boîte à outils comprend 667 lignes de code réparties sur plusieurs modules
   - `batch_process_directories()`
 - **Objectif** : Traiter les pages contenant deux images et les diviser en fichiers séparés
 
-### `image.py`
-- **Classe principale** : `jpgImageSplitter`
-- **Objectif** : Traiter les pages contenant une seule image
 
 ### `extract_text_from_img_to_xls.py`
 - **Fonctions principales** : 
@@ -50,7 +47,7 @@ La boîte à outils comprend 667 lignes de code réparties sur plusieurs modules
   - `find_jpg_files()`
   - `create_extraction_subfolder()`
   - `extract_image_content()`
-- **Objectif** : Extraire le contenu visuel des images en supprimant les éléments textuels
+- **Objectif** : Extraire le contenu visuel des images en supprimant les éléments textuels et extraitre les images des images_seules
 
 ## Flux de travail
 
@@ -61,9 +58,8 @@ La boîte à outils comprend 667 lignes de code réparties sur plusieurs modules
    - `plans` : Pages avec des diagrammes ou des dessins
 3. Exécuter `convertPNGtoJPG.py` pour convertir tous les fichiers PNG au format JPG
 4. Exécuter `extract_double_image_jpg.py` pour traiter et diviser les pages contenant plusieurs images
-5. Exécuter `image.py` pour traiter les pages avec une seule image
-6. Exécuter `extract_text_from_img_to_xls.py` pour extraire le contenu textuel dans des fichiers Excel
-7. Exécuter `extract_images_completly.py` pour créer un dossier d'images sans texte
+5. Exécuter `extract_text_from_img_to_xls.py` pour extraire le contenu textuel dans des fichiers Excel
+6. Exécuter `extract_images_completly.py` pour créer un dossier d'images sans texte
 
 ## Prérequis
 
